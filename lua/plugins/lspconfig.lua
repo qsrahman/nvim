@@ -42,6 +42,23 @@ return {
         opts.desc = "Rename symbol"
         map("n", "<leader>cr", vim.lsp.buf.rename, opts)
 
+        -- opts.desc = "List document symbols"
+        -- map("n", "ss", vim.lsp.buf.document_symbol, opts)
+
+        -- opts.desc = "List workspace symbols"
+        -- map("n", "sS", vim.lsp.buf.workspace_symbol, opts)
+
+        opts.desc = "Add workspace folder"
+        map("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, opts)
+
+        opts.desc = "Remove workspace folder"
+        map("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, opts)
+
+        -- opts.desc = "List workspace folders"
+        -- map("n", "<leader>wl", function()
+        --   print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+        -- end, opts)
+
         -- opts.desc = "Show buffer diagnostics"
         -- map("n", "<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>", opts)
 

@@ -24,7 +24,7 @@ vim.opt.rtp:prepend(lazypath)
 
 require("config.globals")
 require("config.options")
--- require("config.neovide")
+require("config.neovide")
 
 -- Setup lazy.nvim
 require("lazy").setup({

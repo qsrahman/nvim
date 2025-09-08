@@ -7,6 +7,11 @@ return {
   },
   opts = {
     focus = true,
+    modes = {
+      lsp = {
+        win = { position = "right" },
+      },
+    },
   },
   keys = {
     { "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", desc = "Diagnostics (Trouble)" },

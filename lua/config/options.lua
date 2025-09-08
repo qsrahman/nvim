@@ -3,8 +3,10 @@ vim.opt.number = true -- Line numbers
 vim.opt.relativenumber = false -- Relative line numbers
 vim.opt.cursorline = true -- Highlight current line
 vim.opt.scrolloff = 10 -- Keep 10 lines above/below cursor
+vim.opt.sidescroll = 1 -- scroll left/right one char at a time
 vim.opt.sidescrolloff = 8 -- Keep 8 columns left/right of cursor
 vim.opt.wrap = false -- Don't wrap lines
+-- vim.opt.mousescroll = "ver:1,hor:0" -- disable horizontal scrolling
 
 -- Tabbing / Indentation
 vim.opt.tabstop = 4 -- Tab width
@@ -92,3 +94,5 @@ vim.opt.virtualedit = "block" -- Allow cursor to move where there is no text in 
 vim.opt.winminwidth = 5 -- Minimum window width
 
 vim.opt.laststatus = 3
+
+vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"

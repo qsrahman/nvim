@@ -6,21 +6,21 @@ return {
   end,
   opts = {
     formatters_by_ft = {
-      -- c = { "clang-format" },
-      -- cpp = { "clang-format" },
-      -- css = { "prettier" },
-      -- go = { "goimports", "gofumpt" },
-      -- html = { "prettier" },
-      -- javascript = { "prettier" },
+      c = { "clang-format" },
+      cpp = { "clang-format" },
+      css = { "prettier" },
+      go = { "goimports", "gofumpt" },
+      html = { "prettier" },
+      javascript = { "prettier" },
       -- javascriptreact = { "prettier" },
-      -- json = { "prettier" },
+      json = { "prettier" },
       lua = { "stylua" },
-      -- markdown = { "prettier" },
-      -- python = { "isort", "black" },
-      -- rust = { "rustfmt" },
-      -- typescript = { "prettier" },
+      markdown = { "prettier" },
+      python = { "isort", "black" },
+      rust = { "rustfmt" },
+      typescript = { "prettier" },
       -- typescriptreact = { "prettier" },
-      -- yaml = { "prettier" },
+      yaml = { "prettier" },
     },
     formatters = {
       ["clang-format"] = {
@@ -50,7 +50,7 @@ return {
   keys = {
     {
       mode = { "n", "v" },
-      "<leader>cf",
+      "<leader>cF",
       function()
         require("conform").format({
           lsp_fallback = true,
