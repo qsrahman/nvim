@@ -41,7 +41,7 @@ return {
         lualine_y = { "location" },
         lualine_z = { "progress" },
       },
-      extensions = { "lazy", "mason", "quickfix", "trouble", "nvim-dap-ui", "man" },
+      extensions = { "lazy", "mason", "quickfix", "trouble", "nvim-dap-ui", "man", "fzf" },
     })
   end,
 }
