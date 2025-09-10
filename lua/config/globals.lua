@@ -1,6 +1,9 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
+-- Fix markdown indentation settings
+vim.g.markdown_recommended_style = 0
+
 vim.g.have_nerd_font = true
 
 -- Disable providers

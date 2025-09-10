@@ -4,8 +4,10 @@ vim.opt.relativenumber = false -- Relative line numbers
 vim.opt.cursorline = true -- Highlight current line
 vim.opt.scrolloff = 10 -- Keep 10 lines above/below cursor
 vim.opt.sidescroll = 1 -- scroll left/right one char at a time
-vim.opt.sidescrolloff = 8 -- Keep 8 columns left/right of cursor
+vim.opt.sidescrolloff = 8 -- Keep 8 columns left/right of cursori
+vim.opt.smoothscroll = true
 vim.opt.wrap = false -- Don't wrap lines
+vim.opt.spelllang = { "en" }
 -- vim.opt.mousescroll = "ver:1,hor:0" -- disable horizontal scrolling
 
 -- Tabbing / Indentation
@@ -17,12 +19,16 @@ vim.opt.smartindent = true -- Smart auto-indenting
 vim.opt.autoindent = true -- Copy indent from current line
 vim.opt.grepprg = "rg --vimgrep" -- Use ripgrep if available
 vim.opt.grepformat = "%f:%l:%c:%m" -- filename, line number, column, content
+vim.opt.formatoptions = "jcqlnt" -- tcqj
+vim.opt.shortmess:append({ W = true, I = true, c = true, C = true })
 
 -- Search Settings
 vim.opt.ignorecase = true -- Case-insensitive search
 vim.opt.smartcase = true -- Case-sensitive if uppercase in search
 vim.opt.hlsearch = false -- Don't highlight search results
 vim.opt.incsearch = true -- Show matches as you type
+vim.opt.inccommand = "nosplit" -- preview incremental substitute
+vim.opt.jumpoptions = "view"
 
 -- Visual Settings
 vim.opt.termguicolors = true -- Enable 24-bit colors
@@ -37,6 +43,8 @@ vim.opt.pumblend = 10 -- Popup menu transparency
 vim.opt.winblend = 0 -- Floating window transparency
 vim.opt.conceallevel = 0 -- Don't hide markup
 vim.opt.concealcursor = "" -- Show markup even on cursor line
+vim.opt.laststatus = 3 -- global statusline
+vim.opt.ruler = false -- Disable the default ruler
 
 -- File Handling
 vim.opt.backup = false -- Don't create backup files
@@ -44,7 +52,8 @@ vim.opt.writebackup = false -- Don't backup before overwriting
 vim.opt.swapfile = false -- Don't create swap files
 vim.opt.undofile = true -- Persistent undo
 vim.opt.autoread = true -- Auto-reload file if changed outside
-vim.opt.autowrite = false -- Don't auto-save on some events
+vim.opt.autowrite = true -- Enable auto write
+vim.opt.confirm = true -- Confirm to save changes before exiting modified buffer
 vim.opt.diffopt:append("vertical") -- Vertical diff splits
 vim.opt.diffopt:append("algorithm:patience") -- Better diff algorithm
 vim.opt.diffopt:append("linematch:60") -- Better diff highlighting (smart line matching)
@@ -95,4 +104,4 @@ vim.opt.winminwidth = 5 -- Minimum window width
 
 vim.opt.laststatus = 3
 
-vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+vim.opt.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"

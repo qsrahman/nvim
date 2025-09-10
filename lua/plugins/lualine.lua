@@ -8,16 +8,15 @@ return {
     local lualine = require("lualine")
     local lazy_status = require("lazy.status")
 
-    local custom_theme = require("lualine.themes.dracula")
-    custom_theme.normal.c.bg = "NONE"
+    -- local custom_theme = require("lualine.themes.dracula")
+    -- custom_theme.normal.c.bg = "#24273a"
 
     lualine.setup({
       options = {
-        theme = custom_theme, -- "auto"
+        theme = "dracula", -- "auto"
         always_show_tabline = false,
-        globalstatus = vim.o.laststatus == 3,
-        -- section_separators = { left = "", right = "" },
-        section_separators = { left = "", right = "" },
+        section_separators = { left = "", right = "" },
+        -- section_separators = { left = "", right = "" },
         -- component_separators = { left = "|", right = "|" },
         component_separators = { left = "", right = "" },
       },
@@ -36,7 +35,8 @@ return {
             cond = lazy_status.has_updates,
             color = { fg = "#ff9e64" },
           },
-          { "filetype", "lsp_status" },
+          { "lsp_status", color = { fg = "#00ee00" }, icon = { "󱐋", color = { fg = "gold" } } },
+          { "filetype" },
         },
         lualine_y = { "location" },
         lualine_z = { "progress" },

@@ -77,8 +77,8 @@ map("v", "<A-Down>", ":<C-u>execute \"'<,'>move '>+\" . v:count1<cr>gv=gv", { de
 map("v", "<A-Up>", ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv", { desc = "Move Up" })
 
 -- Open terminal
-map("n", "<D-`>", "<cmd>bo term<CR>", { desc = "Toggle terminal" })
-map("i", "<D-`>", "<C-o><cmd>bo term<CR>", { desc = "Toggle terminal" })
+map("n", "<D-`>", "<cmd>below terminal", { desc = "Toggle terminal" })
+map("i", "<D-`>", "<C-o><cmd>below terminal<CR>", { desc = "Toggle terminal" })
 map("t", "<D-`>", "exit<CR>", { desc = "Toggle terminal" })
 
 map("n", "<D-/>", "gcc", { desc = "Toggle comment line", remap = true })

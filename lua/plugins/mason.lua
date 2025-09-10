@@ -49,6 +49,7 @@ return {
         "isort",
         "prettier",
         "pylint",
+        "rustfmt",
         "stylua",
       },
     })
@@ -60,6 +61,7 @@ return {
         "codelldb",
         "debugpy",
         "delve",
+        "js-debug-adapter",
       },
     })
   end,

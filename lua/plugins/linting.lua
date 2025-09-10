@@ -21,7 +21,16 @@ return {
       end,
     }
 
-    -- lint.linters.pylint.args = {}
+    -- lint.linters.pylint.args = {
+    --   "-m",
+    --   "pylint",
+    --   "-f",
+    --   "json",
+    --   "--from-stdin",
+    --   function()
+    --     return vim.api.nvim_buf_get_name(0)
+    --   end,
+    -- }
 
     vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
       group = vim.api.nvim_create_augroup("lint", { clear = true }),

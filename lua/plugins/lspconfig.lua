@@ -4,7 +4,6 @@ return {
   dependencies = {
     "mason-org/mason.nvim",
     "nvim-lua/plenary.nvim",
-    -- "hrsh7th/cmp-nvim-lsp",
     { "antosha417/nvim-lsp-file-operations", opts = {} },
   },
   config = function()
@@ -130,7 +129,7 @@ return {
         end
 
         if client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
-          -- vim.lsp.inlay_hint.enable(true)
+          vim.lsp.inlay_hint.enable(true)
           opts.desc = "Toggle inlay hints"
           map("n", "<leader>th", function()
             vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = ev.buf }))
