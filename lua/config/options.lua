@@ -2,7 +2,7 @@
 vim.opt.number = true -- Line numbers
 vim.opt.relativenumber = false -- Relative line numbers
 vim.opt.cursorline = true -- Highlight current line
-vim.opt.scrolloff = 10 -- Keep 10 lines above/below cursor
+vim.opt.scrolloff = 4 -- Keep 4 lines above/below cursor
 vim.opt.sidescroll = 1 -- scroll left/right one char at a time
 vim.opt.sidescrolloff = 8 -- Keep 8 columns left/right of cursori
 vim.opt.smoothscroll = true
@@ -14,12 +14,14 @@ vim.opt.spelllang = { "en" }
 vim.opt.tabstop = 4 -- Tab width
 vim.opt.shiftwidth = 4 -- Indent width
 vim.opt.softtabstop = 4 -- Soft tab stop
+vim.opt.shiftround = true -- Round indent
 vim.opt.expandtab = true -- Use spaces instead of tabs
 vim.opt.smartindent = true -- Smart auto-indenting
 vim.opt.autoindent = true -- Copy indent from current line
 vim.opt.grepprg = "rg --vimgrep" -- Use ripgrep if available
 vim.opt.grepformat = "%f:%l:%c:%m" -- filename, line number, column, content
-vim.opt.formatoptions = "jcqlnt" -- tcqj
+vim.opt.formatoptions:remove("r")
+vim.opt.formatoptions:remove("o")
 vim.opt.shortmess:append({ W = true, I = true, c = true, C = true })
 
 -- Search Settings
@@ -91,17 +93,22 @@ vim.opt.splitright = true -- Vertical splits open to the right
 
 -- Shift + Cursor keys select text
 vim.opt.keymodel = "startsel,stopsel"
+-- vim.opt.selection = "exclusive"
+-- vim.opt.selectmode = "mouse,key"
+-- vim.opt.mousemodel = "popup"
+vim.opt.virtualedit = "block" -- Allow cursor to move where there is no text in visual block mode
 
 vim.opt.background = "dark"
 
 vim.opt.list = true -- Show some invisible characters (tabs...
 vim.opt.listchars:append({ tab = "» ", trail = "·", nbsp = "␣" })
 
+vim.opt.undofile = true
+vim.opt.undolevels = 10000
 vim.opt.updatetime = 200 -- Save swap file and trigger CursorHold
 
-vim.opt.virtualedit = "block" -- Allow cursor to move where there is no text in visual block mode
 vim.opt.winminwidth = 5 -- Minimum window width
 
 vim.opt.laststatus = 3
 
-vim.opt.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+vim.opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp", "folds" }

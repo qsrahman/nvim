@@ -6,7 +6,7 @@ return {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
   },
   keys = {
-    { "<leader>cm", "<cmd>Mason<cr>", desc = "Open Mason" },
+    { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" },
   },
   config = function()
     require("mason").setup({
@@ -46,10 +46,11 @@ return {
         "eslint_d",
         "goimports",
         "gofumpt",
+        "gomodifytags",
+        "impl",
         "isort",
         "prettier",
         "pylint",
-        "rustfmt",
         "stylua",
       },
     })

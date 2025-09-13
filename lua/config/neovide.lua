@@ -20,7 +20,16 @@ vim.keymap.set("c", "<D-v>", "<C-R>+") -- Paste command mode
 vim.keymap.set("i", "<D-v>", '<ESC>l"+Pli') -- Paste insert mode
 
 -- This allows me to use cmd+v to paste stuff into neovide
-vim.api.nvim_set_keymap("", "<D-v>", "+p<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("!", "<D-v>", "<C-R>+", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("t", "<D-v>", "<C-R>+", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("v", "<D-v>", "<C-R>+", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("", "<D-v>", "+p<CR>", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("!", "<D-v>", "<C-R>+", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("t", "<D-v>", "<C-R>+", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("v", "<D-v>", "<C-R>+", { noremap = true, silent = true })
+
+vim.keymap.set("n", "<D-Up>", "gg", { desc = "Jump to top of file" })
+vim.keymap.set("n", "<D-Down>", "G", { desc = "Jump to bottom of file" })
+vim.keymap.set("i", "<D-Up>", "<C-o>gg", { desc = "Jump to top of file" })
+vim.keymap.set("i", "<D-Down>", "<C-o>G", { desc = "Jump to bottom of file" })
+vim.keymap.set("n", "<D-Left>", "0", { desc = "Jump to start of line" })
+vim.keymap.set("n", "<D-Right>", "$", { desc = "Jump to end of line" })
+vim.keymap.set("i", "<D-Left>", "<C-o>0", { desc = "Jump to start of line" })
+vim.keymap.set("i", "<D-Right>", "<C-o>$", { desc = "Jump to end of line" })

@@ -19,6 +19,9 @@ return {
         -- section_separators = { left = "", right = "" },
         -- component_separators = { left = "|", right = "|" },
         component_separators = { left = "", right = "" },
+        disabled_filetypes = {
+          statusline = { "alpha" },
+        },
       },
       sections = {
         lualine_a = {
@@ -41,7 +44,7 @@ return {
         lualine_y = { "location" },
         lualine_z = { "progress" },
       },
-      extensions = { "lazy", "mason", "quickfix", "trouble", "nvim-dap-ui", "man", "fzf" },
+      extensions = { "lazy", "neo-tree", "mason", "quickfix", "trouble", "nvim-dap-ui", "man", "fzf" },
     })
   end,
 }

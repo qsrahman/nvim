@@ -13,7 +13,7 @@ map("i", "<D-s>", "<C-o><cmd>w<CR>", { desc = "Save file" })
 map({ "v", "n" }, "x", '"_x', { desc = "Delete single character" })
 
 -- Keep last yanked when pasting
-map({ "v", "x" }, "p", '"_dP', { desc = "Paste" })
+map({ "v", "x" }, "p", '"_dp', { desc = "Paste" })
 
 map("v", "y", '"+y', { desc = "Yank to system clipboard" })
 
@@ -29,7 +29,7 @@ map("n", "J", "mzJ`z", { desc = "Join lines and keep cursor position" })
 
 map("n", "<Enter>", "O<Down><Esc>", { desc = "Insert new line above cursor" })
 map("n", "<Bs>", "X", { desc = "Delete new line above cursor" })
-map("v", "<bs>", '"_di', { desc = "Delete selected text" })
+map("v", "<Bs>", '"_di', { desc = "Delete selected text" })
 
 -- Search and replace
 map("n", "<D-r>", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/g<Left><Left>", { desc = "Search and replace" })
@@ -44,8 +44,8 @@ map("n", "<A-S-Down>", "yyp", { noremap = true, silent = true, desc = "Duplicate
 map("i", "<A-S-Down>", "<C-o>yyp", { noremap = true, silent = true, desc = "Duplicate current line" })
 
 -- Buffer navigation
--- map("n", "<Tab>", "<Cmd>bnext<CR>", { desc = "Next buffer" })
--- map("n", "<S-Tab>", "<Cmd>bprevious<CR>", { desc = "Previous buffer" })
+map("n", "<Tab>", "<Cmd>bnext<CR>", { desc = "Next buffer" })
+map("n", "<S-Tab>", "<Cmd>bprevious<CR>", { desc = "Previous buffer" })
 
 -- Center screen when jumping
 map("n", "n", "'Nn'[v:searchforward].'zv'", { expr = true, desc = "Next Search Result" })
