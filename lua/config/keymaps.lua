@@ -13,9 +13,7 @@ map("i", "<D-s>", "<C-o><cmd>w<CR>", { desc = "Save file" })
 map({ "v", "n" }, "x", '"_x', { desc = "Delete single character" })
 
 -- Keep last yanked when pasting
-map({ "v", "x" }, "p", '"_dp', { desc = "Paste" })
-
-map("v", "y", '"+y', { desc = "Yank to system clipboard" })
+map({ "v", "x" }, "p", '"_di', { desc = "Paste" })
 
 map("n", "<D-k>", '"_d$', { desc = "Delete to end of line" })
 map("i", "<D-k>", '<C-o>"_d$', { desc = "Delete to end of line" })
@@ -31,6 +29,24 @@ map("n", "<Enter>", "O<Down><Esc>", { desc = "Insert new line above cursor" })
 map("n", "<Bs>", "X", { desc = "Delete new line above cursor" })
 map("v", "<Bs>", '"_di', { desc = "Delete selected text" })
 
+map("n", "<D-Up>", "gg", { desc = "Jump to start of file" })
+map("n", "<D-Down>", "G", { desc = "Jump to end of file" })
+map("i", "<D-Up>", "<C-o>gg", { desc = "Jump to start of file" })
+map("i", "<D-Down>", "<C-o>G", { desc = "Jump to end of file" })
+map("n", "<D-Left>", "0", { desc = "Jump to start of line" })
+map("n", "<D-Right>", "$", { desc = "Jump to end of line" })
+map("i", "<D-Left>", "<C-o>0", { desc = "Jump to start of line" })
+map("i", "<D-Right>", "<C-o>$", { desc = "Jump to end of line" })
+
+map("v", "y", '"+y', { desc = "Yank to system clipboard" })
+
+-- Cut, Copy and Paste
+map("v", "<D-c>", '"+y', { desc = "Copy" }) -- Copy
+map("v", "<D-x>", '"+d', { desc = "Cut" }) -- Cut
+map({ "n", "v" }, "<D-v>", '"+P', { desc = "Paste" }) -- Paste
+-- map("i", "<D-v>", '<Esc>l"+Pli', { desc = "Paste"}) -- Paste insert mode
+map("i", "<D-v>", '<C-o>"+P', { desc = "Paste" }) -- Paste insert mode
+
 -- Search and replace
 map("n", "<D-r>", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/g<Left><Left>", { desc = "Search and replace" })
 map("i", "<D-r>", "<C-o>:%s/\\<<C-r><C-w>\\>/<C-r><C-w>/g<Left><Left>", { desc = "Search and replace" })
@@ -41,7 +57,7 @@ map("v", "<", "<gv", { desc = "Indent left and reselect" })
 map("v", ">", ">gv", { desc = "Indent right and reselect" })
 
 map("n", "<A-S-Down>", "yyp", { noremap = true, silent = true, desc = "Duplicate current line" })
-map("i", "<A-S-Down>", "<C-o>yyp", { noremap = true, silent = true, desc = "Duplicate current line" })
+map("i", "<A-S-Down>", "<Esc>yypi", { noremap = true, silent = true, desc = "Duplicate current line" })
 
 -- Buffer navigation
 map("n", "<Tab>", "<Cmd>bnext<CR>", { desc = "Next buffer" })
@@ -77,7 +93,7 @@ map("v", "<A-Down>", ":<C-u>execute \"'<,'>move '>+\" . v:count1<cr>gv=gv", { de
 map("v", "<A-Up>", ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv", { desc = "Move Up" })
 
 -- Open terminal
-map("n", "<D-`>", "<cmd>below terminal", { desc = "Toggle terminal" })
+map("n", "<D-`>", "<cmd>below terminal<CR>", { desc = "Toggle terminal" })
 map("i", "<D-`>", "<C-o><cmd>below terminal<CR>", { desc = "Toggle terminal" })
 map("t", "<D-`>", "exit<CR>", { desc = "Toggle terminal" })
 

@@ -20,8 +20,7 @@ vim.opt.smartindent = true -- Smart auto-indenting
 vim.opt.autoindent = true -- Copy indent from current line
 vim.opt.grepprg = "rg --vimgrep" -- Use ripgrep if available
 vim.opt.grepformat = "%f:%l:%c:%m" -- filename, line number, column, content
-vim.opt.formatoptions:remove("r")
-vim.opt.formatoptions:remove("o")
+vim.opt.formatoptions:remove({ "r", "o" })
 vim.opt.shortmess:append({ W = true, I = true, c = true, C = true })
 
 -- Search Settings
@@ -35,7 +34,7 @@ vim.opt.jumpoptions = "view"
 -- Visual Settings
 vim.opt.termguicolors = true -- Enable 24-bit colors
 vim.opt.signcolumn = "yes" -- Always show sign column
-vim.opt.colorcolumn = "100" -- Show column at 100 characters
+-- vim.opt.colorcolumn = "100" -- Show column at 100 characters
 vim.opt.showmatch = true -- Highlight matching brackets
 vim.opt.matchtime = 2 -- How long to show matching bracket
 vim.opt.completeopt = "menu,menuone,noselect" -- Completion options
@@ -93,15 +92,15 @@ vim.opt.splitright = true -- Vertical splits open to the right
 
 -- Shift + Cursor keys select text
 vim.opt.keymodel = "startsel,stopsel"
--- vim.opt.selection = "exclusive"
--- vim.opt.selectmode = "mouse,key"
--- vim.opt.mousemodel = "popup"
+vim.opt.selection = "inclusive" -- "exclusive"
+-- vim.opt.selectmode = "mouse,key" -- "mouse,key,cmd"
+-- vim.opt.mousemodel = "popup" -- "popup_setpos"
 vim.opt.virtualedit = "block" -- Allow cursor to move where there is no text in visual block mode
 
 vim.opt.background = "dark"
 
 vim.opt.list = true -- Show some invisible characters (tabs...
-vim.opt.listchars:append({ tab = "» ", trail = "·", nbsp = "␣" })
+-- vim.opt.listchars:append({ tab = "» ", trail = "·", nbsp = "␣" })
 
 vim.opt.undofile = true
 vim.opt.undolevels = 10000

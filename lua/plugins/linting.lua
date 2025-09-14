@@ -7,7 +7,7 @@ return {
     lint.linters_by_ft = {
       javascript = { "eslint_d" },
       typescript = { "eslint_d" },
-      python = { "pylint" },
+      python = { "ruff" },
     }
 
     lint.linters.eslint_d.args = {
@@ -20,17 +20,6 @@ return {
         return vim.fn.expand("%:p")
       end,
     }
-
-    -- lint.linters.pylint.args = {
-    --   "-m",
-    --   "pylint",
-    --   "-f",
-    --   "json",
-    --   "--from-stdin",
-    --   function()
-    --     return vim.api.nvim_buf_get_name(0)
-    --   end,
-    -- }
 
     vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
       group = vim.api.nvim_create_augroup("lint", { clear = true }),

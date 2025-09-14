@@ -83,3 +83,20 @@ vim.api.nvim_create_autocmd(
   { "BufLeave", "FocusLost", "InsertEnter", "WinLeave" },
   { pattern = "*", command = "if &nu | set nornu | endif" }
 )
+
+vim.api.nvim_create_autocmd({ "FileType" }, {
+  group = augroup("FormatOptions"),
+  pattern = { "*" },
+  callback = function()
+    vim.opt_local.fo:remove("o")
+    vim.opt_local.fo:remove("r")
+  end,
+})
+
+vim.api.nvim_create_autocmd({ "TermOpen" }, {
+  group = augroup("TermOpen"),
+  pattern = { "*" },
+  callback = function()
+    vim.cmd("startinsert")
+  end,
+})

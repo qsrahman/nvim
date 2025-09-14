@@ -46,7 +46,16 @@ return {
         },
       },
       html = {},
-      jsonls = {},
+      jsonls = {
+        settings = {
+          json = {
+            format = {
+              enable = true,
+            },
+            validate = { enable = true },
+          },
+        },
+      },
       lua_ls = {
         settings = {
           Lua = {
@@ -78,23 +87,32 @@ return {
       },
       pyright = {
         settings = {
-          -- pyright = {},
+          pyright = {
+            -- Using Ruff's import organizer
+            disableOrganizeImports = true,
+          },
           python = {
             analysis = {
-              typeCheckingMode = "basic", -- Can be "off", "standard", or "strict"
-              autoSearchPaths = true,
-              diagnosticMode = "openFilesOnly",
-              autoImportCompletion = true,
-              useLibraryCodeForTypes = true,
-              diagnosticSeverityOverrides = {
-                reportUnusedVariable = "warning",
-                reportMissingImports = "error",
-              },
+              -- Ignore all files for analysis to exclusively use Ruff for linting
+              ignore = { "*" },
+              -- typeCheckingMode = "basic", -- Can be "off", "standard", or "strict"
+              -- pythonPath = vim.fn.exepath("python3"),
+              -- venvPath = ".venv",
             },
-            pythonPath = vim.fn.exepath("python3"),
-            venvPath = ".venv",
           },
         },
+      },
+      ruff = {
+        init_options = {
+          settings = {
+            logLevel = "debug",
+            -- args = { "--extend-select", "I" },
+          },
+        },
+        on_attach = function(client, _)
+          -- Disable hover in favor of Pyright
+          client.server_capabilities.hoverProvider = false
+        end,
       },
       rust_analyzer = {},
       ts_ls = {
@@ -226,6 +244,11 @@ return {
         if not client then
           return
         end
+
+        -- if client.name == "ruff" then
+        -- -- Disable hover in favor of Pyright
+        -- client.server_capabilities.hoverProvider = false
+        -- end
 
         -- Format the current buffer on save
         -- vim.api.nvim_create_autocmd("BufWritePre", {

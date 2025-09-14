@@ -39,7 +39,7 @@ return {
             color = { fg = "#ff9e64" },
           },
           { "lsp_status", color = { fg = "#00ee00" }, icon = { "󱐋", color = { fg = "gold" } } },
-          { "filetype" },
+          -- { "filetype" },
         },
         lualine_y = { "location" },
         lualine_z = { "progress" },

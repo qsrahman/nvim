@@ -6,20 +6,6 @@ return {
   opts = {
     view = {
       width = 30,
-      -- relativenumber = true,
-    },
-    renderer = {
-      indent_markers = {
-        enable = true,
-      },
-      icons = {
-        glyphs = {
-          folder = {
-            arrow_closed = "▶",
-            arrow_open = "▼",
-          },
-        },
-      },
     },
     -- disable window_picker for explorer to work well with window splits
     actions = {
@@ -31,6 +17,7 @@ return {
       },
     },
     filters = {
+      dotfiles = true,
       custom = { ".git", ".DS_Store", "__pycache__", "node_modules" },
     },
     git = {
