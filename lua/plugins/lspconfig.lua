@@ -5,8 +5,84 @@ return {
     "mason-org/mason.nvim",
   },
   opts = {
+    diagnostics = {
+      float = {
+        -- border = "rounded",
+        source = "if_many",
+      },
+      underline = true,
+      update_in_insert = false,
+      virtual_text = {
+        spacing = 4,
+        source = "if_many",
+        prefix = "●",
+        format = function(diagnostic)
+          local diagnostic_message = {
+            [vim.diagnostic.severity.ERROR] = diagnostic.message,
+            [vim.diagnostic.severity.WARN] = diagnostic.message,
+            [vim.diagnostic.severity.INFO] = diagnostic.message,
+            [vim.diagnostic.severity.HINT] = diagnostic.message,
+          }
+          return diagnostic_message[diagnostic.severity]
+        end,
+      },
+      severity_sort = true,
+      signs = {
+        text = {
+          [vim.diagnostic.severity.WARN] = " ",
+          [vim.diagnostic.severity.HINT] = "󰠠 ",
+          [vim.diagnostic.severity.INFO] = " ",
+          [vim.diagnostic.severity.ERROR] = " ",
+        },
+      },
+    },
+    inlay_hints = {
+      enabled = false,
+    },
+    capabilities = {
+      workspace = {
+        fileOperations = {
+          didRename = true,
+          willRename = true,
+        },
+      },
+    },
     servers = {
-      clangd = {},
+      clangd = {
+        keys = {
+          { "<leader>ch", "<cmd>ClangdSwitchSourceHeader<cr>", desc = "Switch Source/Header (C/C++)" },
+        },
+        root_markers = {
+          "compile_commands.json",
+          "compile_flags.txt",
+          "configure.ac", -- AutoTools
+          "Makefile",
+          "configure.ac",
+          "configure.in",
+          "config.h.in",
+          "meson.build",
+          "meson_options.txt",
+          "build.ninja",
+          ".git",
+        },
+        capabilities = {
+          offsetEncoding = { "utf-16" },
+        },
+        cmd = {
+          "clangd",
+          "--background-index",
+          "--clang-tidy",
+          "--header-insertion=iwyu",
+          "--completion-style=detailed",
+          "--function-arg-placeholders",
+          "--fallback-style=llvm",
+        },
+        init_options = {
+          usePlaceholders = true,
+          completeUnimported = true,
+          clangdFileStatus = true,
+        },
+      },
       cssls = {},
       gopls = {
         settings = {
@@ -87,33 +163,34 @@ return {
       },
       pyright = {
         settings = {
-          pyright = {
-            -- Using Ruff's import organizer
-            disableOrganizeImports = true,
-          },
+          --   pyright = {
+          --     -- Using Ruff's import organizer
+          --     disableOrganizeImports = true,
+          --   },
           python = {
             analysis = {
               -- Ignore all files for analysis to exclusively use Ruff for linting
-              ignore = { "*" },
-              -- typeCheckingMode = "basic", -- Can be "off", "standard", or "strict"
-              -- pythonPath = vim.fn.exepath("python3"),
-              -- venvPath = ".venv",
+              -- ignore = { "*" },
+              typeCheckingMode = "basic", -- Can be "off", "standard", or "strict"
+              autoImportCompletion = true,
             },
           },
         },
       },
-      ruff = {
-        init_options = {
-          settings = {
-            logLevel = "debug",
-            -- args = { "--extend-select", "I" },
-          },
-        },
-        on_attach = function(client, _)
-          -- Disable hover in favor of Pyright
-          client.server_capabilities.hoverProvider = false
-        end,
-      },
+      -- ruff = {
+      --   init_options = {
+      --     settings = {
+      --       logLevel = "debug",
+      --       lint = {
+      --         ignore = { "E403" },
+      --       },
+      --     },
+      --   },
+      -- on_attach = function(client, _)
+      --   -- Disable hover in favor of Pyright
+      --   client.server_capabilities.hoverProvider = false
+      -- end,
+      -- },
       rust_analyzer = {},
       ts_ls = {
         settings = {
@@ -142,17 +219,6 @@ return {
         },
       },
     },
-    inlay_hints = {
-      enabled = false,
-    },
-    capabilities = {
-      workspace = {
-        fileOperations = {
-          didRename = true,
-          willRename = true,
-        },
-      },
-    },
   },
   config = function(_, opts)
     vim.api.nvim_create_autocmd("LspAttach", {
@@ -166,19 +232,19 @@ return {
         -- map("n", "gr", vim.lsp.buf.references, options)
         map("n", "gr", "<cmd>FzfLua lsp_references jump1=true ignore_current_line=true<cr>", options)
 
-        options.desc = "Go to LSP definitions"
+        options.desc = "Goto LSP definitions"
         -- map("n", "gd", vim.lsp.buf.definition, options)
         map("n", "gd", "<cmd>FzfLua lsp_definitions jump1=true ignore_current_line=true<cr>", options)
 
-        options.desc = "Go to declaration"
+        options.desc = "Goto declaration"
         -- map("n", "gD", vim.lsp.buf.declaration, options)
         map("n", "gD", "<cmd>FzfLua lsp_declarations<cr>", options)
 
-        options.desc = "Go to LSP type definitions"
+        options.desc = "Goto LSP type definitions"
         -- map("n", "gY", vim.lsp.buf.type_definition, options)
         map("n", "gy", "<cmd>FzfLua lsp_typedefs jump1=true ignore_current_line=true<cr>", options)
 
-        options.desc = "Go to LSP implementations"
+        options.desc = "Goto LSP implementations"
         -- map("n", "gI", vim.lsp.buf.implementation, options)
         map("n", "gI", "<cmd>FzfLua lsp_implementations jump1=true ignore_current_line=true<cr>", options)
 
@@ -212,29 +278,32 @@ return {
         options.desc = "Show line diagnostics"
         map("n", "<leader>d", vim.diagnostic.open_float, options)
 
-        options.desc = "Go to previous diagnostic"
+        options.desc = "Goto previous diagnostic"
         map("n", "[d", function()
           vim.diagnostic.jump({ count = -1 })
         end, options)
 
-        options.desc = "Go to next diagnostic"
+        options.desc = "Goto next diagnostic"
         map("n", "]d", function()
           vim.diagnostic.jump({ count = 1 })
         end, options)
 
         options.desc = "Show documentation for what is under cursor"
         map("n", "K", function()
-          vim.lsp.buf.hover({ border = "rounded" })
+          -- vim.lsp.buf.hover({ border = "rounded" })
+          vim.lsp.buf.hover()
         end, options)
 
         options.desc = "Show signature documentation"
         map("n", "gK", function()
-          vim.lsp.buf.signature_help({ border = "rounded" })
+          -- vim.lsp.buf.signature_help({ border = "rounded" })
+          vim.lsp.buf.signature_help()
         end, options)
 
         options.desc = "Show signature documentation"
         map("i", "<C-k>", function()
-          vim.lsp.buf.signature_help({ border = "rounded" })
+          -- vim.lsp.buf.signature_help({ border = "rounded" })
+          vim.lsp.buf.signature_help()
         end, options)
 
         options.desc = "Restart LSP"
@@ -246,8 +315,8 @@ return {
         end
 
         -- if client.name == "ruff" then
-        -- -- Disable hover in favor of Pyright
-        -- client.server_capabilities.hoverProvider = false
+        --   -- Disable hover in favor of Pyright
+        --   client.server_capabilities.hoverProvider = false
         -- end
 
         -- Format the current buffer on save
@@ -291,43 +360,14 @@ return {
       end,
     })
 
-    vim.diagnostic.config({
-      float = {
-        border = "rounded",
-        source = "if_many",
-      },
-      underline = true,
-      update_in_insert = false,
-      severity_sort = true,
-      signs = {
-        text = {
-          [vim.diagnostic.severity.WARN] = " ",
-          [vim.diagnostic.severity.HINT] = "󰠠 ",
-          [vim.diagnostic.severity.INFO] = " ",
-          [vim.diagnostic.severity.ERROR] = " ",
-        },
-      },
-      virtual_text = {
-        spacing = 4,
-        source = "if_many",
-        prefix = "●",
-        format = function(diagnostic)
-          local diagnostic_message = {
-            [vim.diagnostic.severity.ERROR] = diagnostic.message,
-            [vim.diagnostic.severity.WARN] = diagnostic.message,
-            [vim.diagnostic.severity.INFO] = diagnostic.message,
-            [vim.diagnostic.severity.HINT] = diagnostic.message,
-          }
-          return diagnostic_message[diagnostic.severity]
-        end,
-      },
-    })
+    vim.diagnostic.config(opts.diagnostics)
 
-    -- capabilities = vim.tbl_deep_extend("force", {}, opts.cpabilities, require("cmp_nvim_lsp").default_capabilities())
-    opts.capabilities = vim.tbl_deep_extend("force", {}, opts.capabilities, require("blink.cmp").get_lsp_capabilities())
+    -- local capabilities = vim.tbl_deep_extend("force", {}, opts.cpabilities, require("cmp_nvim_lsp").default_capabilities())
+    local capabilities =
+      vim.tbl_deep_extend("force", {}, opts.capabilities, require("blink.cmp").get_lsp_capabilities())
 
     vim.lsp.config("*", {
-      capabilities = opts.capabilities,
+      capabilities = capabilities,
       root_markers = { ".git" },
     })
 

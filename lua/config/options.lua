@@ -1,4 +1,5 @@
 -- Basic Settings
+vim.opt.encoding = "UTF-8" -- Use UTF-8 encoding
 vim.opt.number = true -- Line numbers
 vim.opt.relativenumber = false -- Relative line numbers
 vim.opt.cursorline = true -- Highlight current line
@@ -8,7 +9,6 @@ vim.opt.sidescrolloff = 8 -- Keep 8 columns left/right of cursori
 vim.opt.smoothscroll = true
 vim.opt.wrap = false -- Don't wrap lines
 vim.opt.spelllang = { "en" }
--- vim.opt.mousescroll = "ver:1,hor:0" -- disable horizontal scrolling
 
 -- Tabbing / Indentation
 vim.opt.tabstop = 4 -- Tab width
@@ -30,6 +30,8 @@ vim.opt.hlsearch = false -- Don't highlight search results
 vim.opt.incsearch = true -- Show matches as you type
 vim.opt.inccommand = "nosplit" -- preview incremental substitute
 vim.opt.jumpoptions = "view"
+vim.opt.list = true -- Show some invisible characters (tabs...
+vim.opt.listchars:append({ tab = "» ", trail = "·", nbsp = "␣" })
 
 -- Visual Settings
 vim.opt.termguicolors = true -- Enable 24-bit colors
@@ -52,9 +54,7 @@ vim.opt.backup = false -- Don't create backup files
 vim.opt.writebackup = false -- Don't backup before overwriting
 vim.opt.swapfile = false -- Don't create swap files
 vim.opt.undofile = true -- Persistent undo
-vim.opt.autoread = true -- Auto-reload file if changed outside
-vim.opt.autowrite = true -- Enable auto write
-vim.opt.confirm = true -- Confirm to save changes before exiting modified buffer
+vim.opt.undolevels = 10000
 vim.opt.diffopt:append("vertical") -- Vertical diff splits
 vim.opt.diffopt:append("algorithm:patience") -- Better diff algorithm
 vim.opt.diffopt:append("linematch:60") -- Better diff highlighting (smart line matching)
@@ -62,16 +62,18 @@ vim.opt.diffopt:append("linematch:60") -- Better diff highlighting (smart line m
 -- Behavior Settings
 vim.opt.errorbells = false -- Disable error sounds
 vim.opt.backspace = "indent,eol,start" -- Make backspace behave naturally
-vim.opt.whichwrap = "b,s,<,>,[,],h,l" -- Which "horizontal" keys are allowed to travel to prev/next line (default: 'b,s')
+vim.opt.whichwrap = "<,>,[,],h,l" -- Which "horizontal" keys are allowed to travel to prev/next line (default: 'b,s')
 vim.opt.autochdir = false -- Don't change directory automatically
 vim.opt.iskeyword:append("-") -- Treat dash as part of a word
 vim.opt.path:append("**") -- Search into subfolders with `gf`
-vim.opt.mouse = "a" -- Enable mouse support
 vim.opt.clipboard = vim.env.SSH_TTY and "" or "unnamedplus" -- Sync with system clipboard
-vim.opt.encoding = "UTF-8" -- Use UTF-8 encoding
+vim.opt.virtualedit = "block" -- Allow cursor to move where there is no text in visual block mode
 vim.opt.wildmenu = true -- Enable command-line completion menu
 vim.opt.wildmode = "longest:full,full" -- Completion mode for command-line
 vim.opt.wildignorecase = true -- Case-insensitive tab completion in commands
+vim.opt.winminwidth = 5 -- Minimum window width
+-- vim.opt.autowrite = true -- Enable auto write
+vim.opt.confirm = true -- Confirm to save changes before exiting modified buffer
 
 -- Folding Settings
 vim.opt.foldmethod = "expr" -- Use expression for folding
@@ -90,24 +92,11 @@ vim.opt.fillchars = {
 vim.opt.splitbelow = true -- Horizontal splits open below
 vim.opt.splitright = true -- Vertical splits open to the right
 
--- Shift + Cursor keys select text
-vim.opt.keymodel = "startsel,stopsel"
+vim.opt.mouse = "a" -- Enable mouse support
+vim.opt.keymodel = "startsel,stopsel" -- Shift + Cursor keys select text
 vim.opt.selection = "inclusive" -- "exclusive"
 -- vim.opt.selectmode = "mouse,key" -- "mouse,key,cmd"
 -- vim.opt.mousemodel = "popup" -- "popup_setpos"
-vim.opt.virtualedit = "block" -- Allow cursor to move where there is no text in visual block mode
-
-vim.opt.background = "dark"
-
-vim.opt.list = true -- Show some invisible characters (tabs...
--- vim.opt.listchars:append({ tab = "» ", trail = "·", nbsp = "␣" })
-
-vim.opt.undofile = true
-vim.opt.undolevels = 10000
-vim.opt.updatetime = 200 -- Save swap file and trigger CursorHold
-
-vim.opt.winminwidth = 5 -- Minimum window width
-
-vim.opt.laststatus = 3
+-- vim.opt.mousescroll = "ver:1,hor:0" -- disable horizontal scrolling
 
 vim.opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp", "folds" }

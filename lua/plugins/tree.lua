@@ -4,8 +4,15 @@ return {
     { "nvim-tree/nvim-web-devicons", opts = {} },
   },
   opts = {
+    hijack_cursor = true,
+    sync_root_with_cwd = true,
+    update_focused_file = {
+      enable = true,
+      update_root = false,
+    },
     view = {
       width = 30,
+      preserve_window_proportions = true,
     },
     -- disable window_picker for explorer to work well with window splits
     actions = {
@@ -22,6 +29,10 @@ return {
     },
     git = {
       ignore = false,
+    },
+    renderer = {
+      root_folder_label = false,
+      highlight_git = true,
     },
   },
   keys = {

@@ -1,6 +1,6 @@
 return {
   "ibhagwan/fzf-lua",
-	lazy = false,
+  lazy = false,
   dependencies = { "nvim-tree/nvim-web-devicons" },
   opts = function()
     local fzf = require("fzf-lua")
@@ -26,50 +26,54 @@ return {
       fzf_opts = {
         ["--no-scrollbar"] = true,
       },
+      oldfiles = {
+        stat_file = true, -- verify files exist on disk
+        include_current_session = true,
+      },
       defaults = {
         -- formatter = "path.filename_first",
         formatter = "path.dirname_first",
       },
       -- Configure vim.ui.select
-      ui_select = function(fzf_opts, items)
-        return vim.tbl_deep_extend("force", fzf_opts, {
-          prompt = " ",
-          winopts = {
-            title = " " .. vim.trim((fzf_opts.prompt or "Select"):gsub("%s*:%s*$", "")) .. " ",
-            title_pos = "center",
-          },
-        }, fzf_opts.kind == "codeaction" and {
-          winopts = {
-            layout = "vertical",
-            -- height is number of items minus 15 lines for the preview, with a max of 80% screen height
-            height = math.floor(math.min(vim.o.lines * 0.8 - 16, #items + 2) + 0.5) + 16,
-            width = 0.5,
-            preview = {
-              layout = "vertical",
-              vertical = "down:15,border-top",
-              hidden = "hidden",
-            } or {
-              layout = "vertical",
-              vertical = "down:15,border-top",
-            },
-          },
-        } or {
-          winopts = {
-            width = 0.5,
-            -- height is number of items, with a max of 80% screen height
-            height = math.floor(math.min(vim.o.lines * 0.8, #items + 2) + 0.5),
-          },
-        })
-      end,
-      winopts = {
-        width = 0.8,
-        height = 0.8,
-        row = 0.5,
-        col = 0.5,
-        preview = {
-          scrollchars = { "┃", "" },
-        },
-      },
+      -- ui_select = function(fzf_opts, items)
+      --   return vim.tbl_deep_extend("force", fzf_opts, {
+      --     prompt = " ",
+      --     winopts = {
+      --       title = " " .. vim.trim((fzf_opts.prompt or "Select"):gsub("%s*:%s*$", "")) .. " ",
+      --       title_pos = "center",
+      --     },
+      --   }, fzf_opts.kind == "codeaction" and {
+      --     winopts = {
+      --       layout = "vertical",
+      --       -- height is number of items minus 15 lines for the preview, with a max of 80% screen height
+      --       height = math.floor(math.min(vim.o.lines * 0.8 - 16, #items + 2) + 0.5) + 16,
+      --       width = 0.5,
+      --       preview = {
+      --         layout = "vertical",
+      --         vertical = "down:15,border-top",
+      --         hidden = "hidden",
+      --       } or {
+      --         layout = "vertical",
+      --         vertical = "down:15,border-top",
+      --       },
+      --     },
+      --   } or {
+      --     winopts = {
+      --       width = 0.5,
+      --       -- height is number of items, with a max of 80% screen height
+      --       height = math.floor(math.min(vim.o.lines * 0.8, #items + 2) + 0.5),
+      --     },
+      --   })
+      -- end,
+      -- winopts = {
+      --   width = 0.8,
+      --   height = 0.8,
+      --   row = 0.5,
+      --   col = 0.5,
+      --   preview = {
+      --     scrollchars = { "┃", "" },
+      --   },
+      -- },
       files = {
         cwd_prompt = false,
         actions = {
@@ -78,6 +82,9 @@ return {
         },
       },
       grep = {
+        rg_glob = true, -- enable glob parsing
+        glob_flag = "--iglob", -- case insensitive globs
+        glob_separator = "%s%-%-", -- query separator pattern (lua): ' --'
         actions = {
           ["alt-i"] = { actions.toggle_ignore },
           ["alt-h"] = { actions.toggle_hidden },
@@ -100,22 +107,24 @@ return {
     }
   end,
   config = function(_, opts)
-    if opts[1] == "default-title" then
-      -- use the same prompt for all pickers for profile `default-title` and
-      -- profiles that use `default-title` as base profile
-      local function fix(t)
-        t.prompt = t.prompt ~= nil and " " or nil
-        for _, v in pairs(t) do
-          if type(v) == "table" then
-            fix(v)
-          end
-        end
-        return t
-      end
-      opts = vim.tbl_deep_extend("force", fix(require("fzf-lua.profiles.default-title")), opts)
-      opts[1] = nil
-    end
-    require("fzf-lua").setup(opts)
+    -- if opts[1] == "default-title" then
+    --   -- use the same prompt for all pickers for profile `default-title` and
+    --   -- profiles that use `default-title` as base profile
+    --   local function fix(t)
+    --     t.prompt = t.prompt ~= nil and " " or nil
+    --     for _, v in pairs(t) do
+    --       if type(v) == "table" then
+    --         fix(v)
+    --       end
+    --     end
+    --     return t
+    --   end
+    --   opts = vim.tbl_deep_extend("force", fix(require("fzf-lua.profiles.default-title")), opts)
+    --   opts[1] = nil
+    -- end
+    local fzf = require("fzf-lua")
+    fzf.setup(opts)
+    fzf.register_ui_select()
   end,
   keys = {
     { "<c-j>", "<c-j>", ft = "fzf", mode = "t", nowait = true },

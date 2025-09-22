@@ -4,7 +4,7 @@ end
 
 vim.g.neovide_theme = "auto" -- 'auto', light', 'dark'
 
-vim.o.guifont = "JetBrainsMono Nerd Font:h13"
+vim.o.guifont = "JetBrainsMono Nerd Font:h14"
 vim.g.neovide_text_gamma = 0.9
 vim.g.neovide_text_contrast = 0.1
 

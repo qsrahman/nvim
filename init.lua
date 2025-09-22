@@ -25,6 +25,10 @@ vim.opt.rtp:prepend(lazypath)
 require("config.globals")
 require("config.options")
 require("config.neovide")
+-- _G.utils = {
+-- treesitter = require("utils.treesitter"),
+-- }
+_G.Utils = require("utils")
 
 -- Setup lazy.nvim
 require("lazy").setup({

@@ -2,9 +2,10 @@ return {
   "mason-org/mason.nvim",
   dependencies = {
     "mason-org/mason-lspconfig.nvim",
-    "jay-babu/mason-nvim-dap.nvim",
+    -- "jay-babu/mason-nvim-dap.nvim",
     "WhoIsSethDaniel/mason-tool-installer.nvim",
   },
+  build = ":MasonUpdate",
   keys = {
     { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" },
   },
@@ -38,34 +39,28 @@ return {
 
     require("mason-tool-installer").setup({
       auto_update = true,
-      integration = {
-        ["mason-lspconfig"] = true,
-        ["mason-nvim-dap"] = true,
-      },
       ensure_installed = {
-        -- "black",
         "clang-format",
-        "eslint_d",
+        -- "eslint_d",
+        { "eslint_d", version = "13.1.2" },
         "goimports",
         "gofumpt",
         "gomodifytags",
         "impl",
-        -- "isort",
         "prettier",
-        -- "pylint",
         "stylua",
       },
     })
 
-    require("mason-nvim-dap").setup({
-      -- automatic_installation = true,
-      handler = {},
-      ensure_installed = {
-        "codelldb",
-        "debugpy",
-        "delve",
-        "js-debug-adapter",
-      },
-    })
+    -- require("mason-nvim-dap").setup({
+    --   automatic_installation = true,
+    --   handlers = {},
+    --   handler = {},
+    --   ensure_installed = {
+    --     "codelldb",
+    --     "debugpy",
+    --     "delve",
+    --   },
+    -- })
   end,
 }

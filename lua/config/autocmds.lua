@@ -85,18 +85,10 @@ vim.api.nvim_create_autocmd(
 )
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
-  group = augroup("FormatOptions"),
+  group = augroup("format_options"),
   pattern = { "*" },
   callback = function()
     vim.opt_local.fo:remove("o")
     vim.opt_local.fo:remove("r")
-  end,
-})
-
-vim.api.nvim_create_autocmd({ "TermOpen" }, {
-  group = augroup("TermOpen"),
-  pattern = { "*" },
-  callback = function()
-    vim.cmd("startinsert")
   end,
 })

@@ -4,8 +4,17 @@ return {
   version = "1.*",
   -- build = "cargo build --release",
   dependencies = {
-    "folke/lazydev.nvim",
     "rafamadriz/friendly-snippets",
+    {
+      "folke/lazydev.nvim",
+      ft = "lua",
+      cmd = "LazyDev",
+      opts = {
+        library = {
+          { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+        },
+      },
+    },
     {
       "saghen/blink.compat",
       version = "*",
@@ -70,7 +79,17 @@ return {
       },
     },
     cmdline = {
-      enabled = false,
+      enabled = true,
+      keymap = { preset = "cmdline" },
+      completion = {
+        list = { selection = { preselect = false } },
+        menu = {
+          auto_show = function(ctx)
+            return vim.fn.getcmdtype() == ":"
+          end,
+        },
+        ghost_text = { enabled = true },
+      },
     },
     fuzzy = {
       implementation = "prefer_rust_with_warning",

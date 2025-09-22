@@ -2,6 +2,7 @@ local map = vim.keymap.set
 
 -- quit
 map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
+-- map("i", "<D-q>", "<Esc><cmd>qa<CR>", { desc = "Quit Neovim" })
 
 map("n", "<Esc>", "<cmd>nohl<CR>", { desc = "Clear search highlights", silent = true })
 
@@ -13,7 +14,7 @@ map("i", "<D-s>", "<C-o><cmd>w<CR>", { desc = "Save file" })
 map({ "v", "n" }, "x", '"_x', { desc = "Delete single character" })
 
 -- Keep last yanked when pasting
-map({ "v", "x" }, "p", '"_di', { desc = "Paste" })
+map({ "v", "x" }, "p", '"_dP', { desc = "Paste" })
 
 map("n", "<D-k>", '"_d$', { desc = "Delete to end of line" })
 map("i", "<D-k>", '<C-o>"_d$', { desc = "Delete to end of line" })
@@ -27,7 +28,7 @@ map("n", "J", "mzJ`z", { desc = "Join lines and keep cursor position" })
 
 map("n", "<Enter>", "O<Down><Esc>", { desc = "Insert new line above cursor" })
 map("n", "<Bs>", "X", { desc = "Delete new line above cursor" })
-map("v", "<Bs>", '"_di', { desc = "Delete selected text" })
+map("v", "<Bs>", '"_d', { desc = "Delete selected text" })
 
 map("n", "<D-Up>", "gg", { desc = "Jump to start of file" })
 map("n", "<D-Down>", "G", { desc = "Jump to end of file" })
@@ -42,12 +43,16 @@ map("v", "y", '"+y', { desc = "Yank to system clipboard" })
 
 -- Cut, Copy and Paste
 map("v", "<D-c>", '"+y', { desc = "Copy" }) -- Copy
-map("v", "<D-x>", '"+d', { desc = "Cut" }) -- Cut
-map({ "n", "v" }, "<D-v>", '"+P', { desc = "Paste" }) -- Paste
--- map("i", "<D-v>", '<Esc>l"+Pli', { desc = "Paste"}) -- Paste insert mode
-map("i", "<D-v>", '<C-o>"+P', { desc = "Paste" }) -- Paste insert mode
+map("v", "<D-x>", '"+x', { desc = "Cut" }) -- Cut
+map({ "n", "v" }, "<D-v>", '"+gP', { desc = "Paste" }) -- Paste
+map("c", "<D-v>", "<C-R>+", { desc = "Paste" }) -- Paste insert mode
+map("i", "<D-v>", '<Esc>l"+Pli', { desc = "Paste" }) -- Paste insert mode
+-- map("i", "<D-v>", '<C-o>"+gp', { desc = "Paste" }) -- Paste insert mode
+vim.api.nvim_set_keymap("", "<D-v>", "+p<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("!", "<D-v>", "<C-R>+", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("t", "<D-v>", "<C-R>+", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("v", "<D-v>", "<C-R>+", { noremap = true, silent = true }) -- Search and replace
 
--- Search and replace
 map("n", "<D-r>", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/g<Left><Left>", { desc = "Search and replace" })
 map("i", "<D-r>", "<C-o>:%s/\\<<C-r><C-w>\\>/<C-r><C-w>/g<Left><Left>", { desc = "Search and replace" })
 map("v", "<D-r>", '"hy:%s/<C-r>h/<C-r>h/g<Left><Left>', { desc = "Search and replace" })
@@ -58,6 +63,12 @@ map("v", ">", ">gv", { desc = "Indent right and reselect" })
 
 map("n", "<A-S-Down>", "yyp", { noremap = true, silent = true, desc = "Duplicate current line" })
 map("i", "<A-S-Down>", "<Esc>yypi", { noremap = true, silent = true, desc = "Duplicate current line" })
+
+-- better up/down
+map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
+map({ "n", "x" }, "<Down>", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
+map({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
+map({ "n", "x" }, "<Up>", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
 
 -- Buffer navigation
 map("n", "<Tab>", "<Cmd>bnext<CR>", { desc = "Next buffer" })
@@ -92,11 +103,6 @@ map("i", "<A-Up>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move Up" })
 map("v", "<A-Down>", ":<C-u>execute \"'<,'>move '>+\" . v:count1<cr>gv=gv", { desc = "Move Down" })
 map("v", "<A-Up>", ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv", { desc = "Move Up" })
 
--- Open terminal
-map("n", "<D-`>", "<cmd>below terminal<CR>", { desc = "Toggle terminal" })
-map("i", "<D-`>", "<C-o><cmd>below terminal<CR>", { desc = "Toggle terminal" })
-map("t", "<D-`>", "exit<CR>", { desc = "Toggle terminal" })
-
 map("n", "<D-/>", "gcc", { desc = "Toggle comment line", remap = true })
 map("i", "<D-/>", "<C-o>gcc", { desc = "Toggle comment line", remap = true })
 map("v", "<D-/>", "gc", { desc = "Toggle comments", remap = true })
@@ -126,6 +132,14 @@ map("n", "<leader>uI", function()
   vim.treesitter.inspect_tree()
   vim.api.nvim_input("I")
 end, { desc = "Inspect Tree" })
+
+-- Open terminal
+-- map("n", "<D-`>", "<cmd>below terminal<CR>", { desc = "Toggle terminal" })
+-- map("i", "<D-`>", "<C-o><cmd>below terminal<CR>", { desc = "Toggle terminal" })
+-- map("t", "<D-`>", "exit<CR>", { desc = "Toggle terminal" })
+-- Easily hit escape in terminal mode.
+vim.keymap.set("t", "<esc><esc>", "<C-\\><C-n>")
+vim.keymap.set({ "n", "i", "t", "v" }, "<D-`>", Utils.terminal.toggle_split_terminal, { desc = "Toggle terminal" })
 
 -- lazy
 map("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })

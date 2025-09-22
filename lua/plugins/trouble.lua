@@ -2,7 +2,7 @@ return {
   "folke/trouble.nvim",
   event = { "BufReadPre", "BufNewFile" },
   dependencies = {
-    -- "folke/todo-comments.nvim",
+    "folke/todo-comments.nvim",
     "nvim-tree/nvim-web-devicons",
   },
   opts = {

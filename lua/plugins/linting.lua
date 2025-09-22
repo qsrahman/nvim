@@ -20,6 +20,10 @@ return {
         return vim.fn.expand("%:p")
       end,
     }
+    lint.linters.ruff.args = {
+      "--ignore",
+      "E403",
+    }
 
     vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
       group = vim.api.nvim_create_augroup("lint", { clear = true }),
