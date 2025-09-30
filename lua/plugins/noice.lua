@@ -1,11 +1,19 @@
 return {
   "folke/noice.nvim",
+  -- enabled = false,
   event = "VeryLazy",
   dependencies = {
     "MunifTanjim/nui.nvim",
     "rcarriga/nvim-notify",
   },
   opts = {
+    cmdline = {
+      -- enabled = false,
+      view = "cmdline",
+    },
+    -- messages = {
+    --   enabled = false,
+    -- },
     lsp = {
       override = {
         ["vim.lsp.util.convert_input_to_markdown_lines"] = true,

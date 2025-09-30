@@ -1,5 +1,6 @@
 return {
   "stevearc/conform.nvim",
+  -- enabled = false,
   event = { "BufReadPre", "BufNewFile" },
   dependencies = { "mason.nvim" },
   init = function()
@@ -35,6 +36,10 @@ return {
           "2",
           "--indent-type",
           "Spaces",
+          "--column-width",
+          "120",
+          "--line-endings",
+          "Unix",
         },
       },
       prettier = {
@@ -62,6 +67,7 @@ return {
       },
     },
     format_on_save = {
+      -- These options will be passed to conform.format()
       lsp_fallback = true,
       async = false,
       timeout_ms = 1000,

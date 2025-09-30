@@ -1,6 +1,6 @@
 return {
   "rmagatti/auto-session",
-  enabled = false,
+  -- enabled = false,
   opts = {
     enabled = false,
     suppress_dirs = { "~/", "~/Downloads", "~/Documents", "~/Desktop" },

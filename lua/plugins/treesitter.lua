@@ -2,6 +2,7 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     event = { "BufReadPre", "BufNewFile" },
+    cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
     build = ":TSUpdate",
     config = function()
       require("nvim-treesitter.configs").setup({
@@ -24,7 +25,6 @@ return {
           "gowork",
           "html",
           "javascript",
-          "jsdoc",
           "json",
           "jsonc",
           "json5",
@@ -68,6 +68,7 @@ return {
   -- Automatically add closing tags for HTML and JSX
   {
     "windwp/nvim-ts-autotag",
+    lazy = true,
     opts = {
       opts = {
         enable_close = true, -- Auto close tags

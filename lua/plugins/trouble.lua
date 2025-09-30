@@ -6,7 +6,7 @@ return {
     "nvim-tree/nvim-web-devicons",
   },
   opts = {
-    focus = true,
+    -- focus = true,
     modes = {
       lsp = {
         win = { position = "right" },

@@ -1,6 +1,6 @@
 return {
   "saghen/blink.cmp",
-  event = "VimEnter",
+  event = { "InsertEnter", "CmdLineEnter" },
   version = "1.*",
   -- build = "cargo build --release",
   dependencies = {
@@ -12,6 +12,7 @@ return {
       opts = {
         library = {
           { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+          { path = "lazy.nvim", words = { "LazyVim" } },
         },
       },
     },
@@ -21,6 +22,11 @@ return {
       lazy = true,
       opts = {},
     },
+  },
+  opts_extend = {
+    "sources.completion.enabled_providers",
+    "sources.compat",
+    "sources.default",
   },
   opts = {
     -- 'default' (recommended) for mappings similar to built-in completions (C-y to accept)
@@ -48,6 +54,12 @@ return {
         -- experimental auto-brackets support
         auto_brackets = {
           enabled = true,
+        },
+      },
+      list = {
+        selection = {
+          auto_insert = false,
+          preselect = true,
         },
       },
       menu = {
@@ -84,7 +96,7 @@ return {
       completion = {
         list = { selection = { preselect = false } },
         menu = {
-          auto_show = function(ctx)
+          auto_show = function()
             return vim.fn.getcmdtype() == ":"
           end,
         },
@@ -101,10 +113,5 @@ return {
         border = "rounded",
       },
     },
-  },
-  opts_extend = {
-    "sources.completion.enabled_providers",
-    "sources.compat",
-    "sources.default",
   },
 }

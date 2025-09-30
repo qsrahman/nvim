@@ -12,3 +12,4 @@ vim.g.neovide_text_contrast = 0.1
 -- vim.g.neovide_floating_blur_amount_x = 4.0
 -- vim.g.neovide_floating_blur_amount_y = 4.0
 vim.g.neovide_remember_window_size = true
+vim.g.neovide_show_border = true

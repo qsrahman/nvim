@@ -22,13 +22,10 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("config.globals")
 require("config.options")
 require("config.neovide")
--- _G.utils = {
--- treesitter = require("utils.treesitter"),
--- }
-_G.Utils = require("utils")
+
+_G.LazyVim = require("utils")
 
 -- Setup lazy.nvim
 require("lazy").setup({
@@ -37,7 +34,7 @@ require("lazy").setup({
   },
   install = {
     colorscheme = {
-      "catppuccin-macchiato",
+      "catppuccin",
       "habamax",
     },
   },
@@ -86,5 +83,7 @@ require("lazy").setup({
   },
 })
 
-require("config.keymaps")
 require("config.autocmds")
+vim.schedule(function()
+  require("config.keymaps")
+end)
