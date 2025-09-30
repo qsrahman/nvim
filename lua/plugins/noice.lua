@@ -33,6 +33,16 @@ return {
         },
         view = "mini",
       },
+      {
+        filter = {
+          event = "msg_show",
+          any = {
+            { find = "%d+ more lines" },
+            { find = "%d+ lines yanked" },
+          },
+        },
+        opts = { skip = true },
+      },
     },
     presets = {
       bottom_search = true, -- use a classic bottom cmdline for search

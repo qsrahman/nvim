@@ -24,6 +24,9 @@ return {
         },
       },
     },
+    notify = {
+      threshold = vim.log.levels.WARN,
+    },
     filters = {
       dotfiles = true,
       custom = { ".git", ".DS_Store", "__pycache__", "node_modules" },
@@ -32,7 +35,8 @@ return {
       ignore = false,
     },
     renderer = {
-      root_folder_label = false,
+      root_folder_label = ":t",
+      -- root_folder_label = false,
       highlight_git = true,
     },
   },

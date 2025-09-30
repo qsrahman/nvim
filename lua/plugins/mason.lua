@@ -34,7 +34,7 @@ return {
         "ruff",
         "rust_analyzer",
         "taplo",
-        "ts_ls",
+        "vtsls",
       },
     })
 

@@ -81,7 +81,7 @@ vim.o.confirm = true -- Confirm to save changes before exiting modified buffer
 
 -- Folding Settings
 vim.o.foldtext = ""
-vim.o.foldmethod = "indent" -- Use expression for folding
+vim.o.foldmethod = "expr" -- Use expression for folding
 vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()" -- Use treesitter for folding
 vim.o.foldlevel = 99 -- Keep all folds open by default
 vim.opt.fillchars = {

@@ -143,9 +143,20 @@ map("n", "<leader>uI", function()
 end, { desc = "Inspect Tree" })
 
 -- Open terminal
-map("n", "<D-`>", "<cmd>below terminal<CR>", { desc = "Toggle terminal" })
-map("i", "<D-`>", "<C-o><cmd>below terminal<CR>", { desc = "Toggle terminal" })
+-- map("n", "<D-`>", "<cmd>below terminal<CR>", { desc = "Toggle terminal" })
+-- map("i", "<D-`>", "<C-o><cmd>below terminal<CR>", { desc = "Toggle terminal" })
 map("t", "<D-`>", "exit<CR>", { desc = "Toggle terminal" })
+map({ "n", "i" }, "<D-`>", function()
+  local b = vim.api.nvim_create_buf(false, true)
+  vim.api.nvim_open_win(b, true, {
+    split = "below",
+    height = 15,
+    fixed = true,
+  })
+
+  vim.cmd.term()
+  vim.cmd.startinsert()
+end, { desc = "Toggle terminal" })
 
 -- lazy
 map("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
