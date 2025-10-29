@@ -2,7 +2,7 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     event = { "BufReadPre", "BufNewFile" },
-    cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
+    -- cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
     build = ":TSUpdate",
     config = function()
       require("nvim-treesitter.configs").setup({
@@ -16,6 +16,7 @@ return {
         ensure_installed = {
           "bash",
           "c",
+          "cmake",
           "cpp",
           "css",
           "diff",
@@ -31,6 +32,7 @@ return {
           "lua",
           "luadoc",
           "luap",
+          "make",
           "markdown",
           "markdown_inline",
           "printf",

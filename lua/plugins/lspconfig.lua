@@ -60,13 +60,13 @@ return {
         if client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
           vim.lsp.inlay_hint.enable(opts.inlay_hints.enabled)
           vim.keymap.set("n", "<leader>uh", function()
-            vim.lsp.inlay_hint.elseifnable(not vim.lsp.inlay_hint.is_enabled({ bufnr = ev.buf }))
+            vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = ev.buf }))
           end, { desc = "Toggle inlay hints", buffer = ev.buf, silent = true })
         end
       end,
     })
-    local capabilities =
-      vim.tbl_deep_extend("force", {}, opts.capabilities, require("blink.cmp").get_lsp_capabilities())
+
+    local capabilities = vim.tbl_deep_extend("force", opts.capabilities, require("blink.cmp").get_lsp_capabilities())
 
     vim.lsp.config("*", {
       capabilities = capabilities,

@@ -21,6 +21,8 @@ return {
     -- Trouble
     config.defaults.actions.files["ctrl-t"] = require("trouble.sources.fzf").actions.open
 
+    fzf.register_ui_select()
+
     return {
       "telescope",
       fzf_colors = true,

@@ -2,7 +2,7 @@ if not vim.g.neovide then
   return
 end
 
-vim.g.neovide_theme = "auto" -- 'auto', light', 'dark'
+vim.g.neovide_theme = "dark" -- 'auto', light', 'dark'
 
 vim.o.guifont = "JetBrainsMono Nerd Font:h14"
 vim.g.neovide_text_gamma = 0.9

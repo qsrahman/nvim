@@ -1,17 +1,12 @@
 return {
-  "mason-org/mason.nvim",
-  cmd = { "Mason", "MasonInstall", "MasonUpdate" },
-  dependencies = {
-    "jay-babu/mason-nvim-dap.nvim",
-    "mason-org/mason-lspconfig.nvim",
-    "WhoIsSethDaniel/mason-tool-installer.nvim",
-  },
-  build = ":MasonUpdate",
-  keys = {
-    { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" },
-  },
-  config = function()
-    require("mason").setup({
+  {
+    "mason-org/mason.nvim",
+    cmd = { "Mason", "MasonInstall", "MasonUpdate" },
+    build = ":MasonUpdate",
+    keys = {
+      { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" },
+    },
+    opts = {
       ui = {
         icons = {
           package_installed = "✓",
@@ -19,9 +14,14 @@ return {
           package_uninstalled = "✗",
         },
       },
-    })
-
-    require("mason-lspconfig").setup({
+    },
+  },
+  {
+    "mason-org/mason-lspconfig.nvim",
+    dependencies = {
+      "mason-org/mason.nvim",
+    },
+    opts = {
       automatic_enable = false,
       ensure_installed = {
         "clangd",
@@ -30,30 +30,43 @@ return {
         "html",
         "jsonls",
         "lua_ls",
+        "neocmake",
         "pyright",
-        "ruff",
         "rust_analyzer",
         "taplo",
         "vtsls",
       },
-    })
-
-    require("mason-tool-installer").setup({
+    },
+  },
+  {
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
+    dependencies = {
+      "mason-org/mason.nvim",
+    },
+    opts = {
       auto_update = true,
       ensure_installed = {
+        "black",
         "clang-format",
-        "eslint_d",
-        -- { "eslint_d", version = "13.1.2" },
+        "cmakelang",
+        "cmakelint",
+        { "eslint_d", version = "13.1.2" },
         "goimports",
         "gofumpt",
         "gomodifytags",
         "impl",
+        "isort",
         "prettier",
         "stylua",
       },
-    })
-
-    require("mason-nvim-dap").setup({
+    },
+  },
+  {
+    "jay-babu/mason-nvim-dap.nvim",
+    dependencies = {
+      "mason-org/mason.nvim",
+    },
+    opts = {
       automatic_installation = true,
       handlers = {
         python = function() end,
@@ -64,6 +77,6 @@ return {
         "debugpy",
         "delve",
       },
-    })
-  end,
+    },
+  },
 }

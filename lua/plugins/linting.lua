@@ -1,14 +1,16 @@
 return {
   "mfussenegger/nvim-lint",
-  -- enabled = false,
-  event = { "BufReadPre", "BufNewFile" },
+  enabled = false,
+  events = { "BufWritePost", "BufReadPost", "InsertLeave" },
   config = function()
     local lint = require("lint")
 
     lint.linters_by_ft = {
+      cmake = { "cmakelint" },
       javascript = { "eslint_d" },
       typescript = { "eslint_d" },
-      python = { "ruff" },
+      python = { "pylint" },
+      -- python = { "ruff" },
     }
 
     lint.linters.eslint_d.args = {
@@ -20,10 +22,6 @@ return {
       function()
         return vim.fn.expand("%:p")
       end,
-    }
-    lint.linters.ruff.args = {
-      "--ignore",
-      "E403",
     }
 
     vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {

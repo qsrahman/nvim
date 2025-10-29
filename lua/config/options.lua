@@ -66,7 +66,7 @@ vim.opt.diffopt:append("linematch:60") -- Better diff highlighting (smart line m
 -- Behavior Settings
 vim.o.errorbells = false -- Disable error sounds
 vim.o.backspace = "indent,eol,start" -- Make backspace behave naturally
-vim.o.whichwrap = "<,>,[,],h,l" -- Which "horizontal" keys are allowed to travel to prev/next line (default: 'b,s')
+vim.o.whichwrap = "<,>,h,l" -- Which "horizontal" keys are allowed to travel to prev/next line (default: 'b,s')
 vim.o.autochdir = false -- Don't change directory automatically
 vim.opt.iskeyword:append("-") -- Treat dash as part of a word
 vim.opt.path:append("**") -- Search into subfolders with `gf`
@@ -99,9 +99,9 @@ vim.o.splitright = true -- Vertical splits open to the right
 
 vim.o.mouse = "a" -- Enable mouse support
 vim.o.keymodel = "startsel,stopsel" -- Shift + Cursor keys select text
-vim.o.selection = "inclusive" -- "exclusive"
-vim.o.selectmode = "mouse,key" -- "mouse,key,cmd"
-vim.o.mousemodel = "popup" -- "popup_setpos"
+-- vim.o.selection = "inclusive" -- "exclusive"
+-- vim.o.selectmode = "mouse,key" -- "mouse,key,cmd"
+-- vim.o.mousemodel = "popup" -- "popup_setpos"
 -- vim.o.mousescroll = "ver:1,hor:0" -- disable horizontal scrolling
 
 vim.opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp", "folds" }

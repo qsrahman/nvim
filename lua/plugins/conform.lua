@@ -9,18 +9,18 @@ return {
   opts = {
     formatters_by_ft = {
       c = { "clang-format" },
+      cmake = { "cmakelang" },
       cpp = { "clang-format" },
       css = { "prettier" },
       go = { "goimports", "gofumpt" },
       html = { "prettier" },
       javascript = { "prettier" },
-      javascriptreact = { "prettier" },
       json = { "prettier" },
       lua = { "stylua" },
       markdown = { "prettier" },
-      python = { "ruff_fix", "ruff_format", "ruff_organize_imports" },
+      python = { "black", "isort" },
+      -- python = { "ruff_fix", "ruff_format", "ruff_organize_imports" },
       typescript = { "prettier" },
-      typescriptreact = { "prettier" },
       yaml = { "prettier" },
     },
     formatters = {
@@ -65,12 +65,15 @@ return {
           "css",
         },
       },
+      isort = {
+        append_args = { "--profile", "black" },
+      },
     },
     format_on_save = {
       -- These options will be passed to conform.format()
-      lsp_fallback = true,
       async = false,
       timeout_ms = 1000,
+      lsp_fallback = true,
     },
   },
   keys = {
@@ -79,9 +82,9 @@ return {
       "<leader>cF",
       function()
         require("conform").format({
-          lsp_fallback = true,
           async = false,
           timeout_ms = 1000,
+          lsp_fallback = true,
         })
       end,
       desc = "Format file or range (in visual mode)",

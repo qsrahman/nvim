@@ -124,6 +124,7 @@ local M = {
         clangdFileStatus = true,
       },
     },
+    neocmake = {},
     cssls = {},
     gopls = {
       settings = {
@@ -204,15 +205,9 @@ local M = {
     },
     pyright = {
       settings = {
-        --   pyright = {
-        --     -- Using Ruff's import organizer
-        --     disableOrganizeImports = true,
-        --   },
         python = {
           analysis = {
-            -- Ignore all files for analysis to exclusively use Ruff for linting
-            -- ignore = { "*" },
-            typeCheckingMode = "basic", -- Can be "off", "standard", or "strict"
+            typeCheckingMode = "basic", -- Can be "off", "basic", "standard", or "strict"
             autoImportCompletion = true,
             diagnosticSeverityOverrides = {
               reportWildcardImportFromLibrary = "none",
@@ -221,20 +216,35 @@ local M = {
         },
       },
     },
+    -- pyright = {
+    --   settings = {
+    --     pyright = {
+    --       -- Using Ruff's import organizer
+    --       disableOrganizeImports = true,
+    --     },
+    --     python = {
+    --       analysis = {
+    --         -- Ignore all files for analysis to exclusively use Ruff for linting
+    --         ignore = { "*" },
+    --         typeCheckingMode = "off",
+    --       },
+    --     },
+    --   },
+    -- },
     -- ruff = {
     --   init_options = {
     --     settings = {
     --       args = {},
-    --       logLevel = "debug",
+    --       logLevel = "error",
     --       lint = {
-    --         ignore = { "E403" },
+    --         ignore = { "F403", "F405" },
     --       },
     --     },
     --   },
-    -- on_attach = function(client, _)
-    --   -- Disable hover in favor of Pyright
-    --   client.server_capabilities.hoverProvider = false
-    -- end,
+    --   on_attach = function(client, _)
+    --     -- Disable hover in favor of Pyright
+    --     client.server_capabilities.hoverProvider = false
+    --   end,
     -- },
     rust_analyzer = {},
     vtsls = {

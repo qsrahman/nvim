@@ -39,6 +39,7 @@ return {
           any = {
             { find = "%d+ more lines" },
             { find = "%d+ lines yanked" },
+            { find = "%d+ fewer lines" },
           },
         },
         opts = { skip = true },

@@ -42,8 +42,11 @@ return {
     --
     -- See :h blink-cmp-config-keymap for defining your own keymap
     keymap = {
-      preset = "enter",
-      ["<C-y>"] = { "select_and_accept" },
+      preset = "super-tab",
+      -- ["<S-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
+      -- ["<Tab>"] = { "select_next", "snippet_forward", "fallback" },
+      -- ["<CR>"] = { "accept", "fallback" },
+      -- ["<Esc>"] = { "hide", "fallback" },
     },
     appearance = {
       use_nvim_cmp_as_default = false,
@@ -78,7 +81,7 @@ return {
         },
       },
       ghost_text = {
-        enabled = true,
+        enabled = false,
       },
     },
     sources = {
