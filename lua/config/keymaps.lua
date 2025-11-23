@@ -1,8 +1,8 @@
 local map = vim.keymap.set
 
 -- quit
-map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
--- map("i", "<D-q>", "<Esc><cmd>qa<CR>", { desc = "Quit Neovim" })
+map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit Neovim" })
+map({ "n", "i" }, "<C-q>", "<Esc><cmd>qa<CR>", { desc = "Quit Neovim" })
 
 map("n", "<Esc>", "<cmd>nohl<CR>", { desc = "Clear search highlights", silent = true })
 
@@ -10,6 +10,7 @@ map("n", "<Esc>", "<cmd>nohl<CR>", { desc = "Clear search highlights", silent = 
 map("n", "<D-s>", "<cmd>w<CR>", { desc = "Save file" })
 map("i", "<D-s>", "<C-o><cmd>w<CR>", { desc = "Save file" })
 map("v", "<D-s>", "<C-c><cmd>w<CR>", { desc = "Save file" })
+map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save File" })
 
 -- delete single character without copying into register
 map({ "v", "n" }, "x", '"_x', { desc = "Delete single character" })
@@ -46,8 +47,8 @@ map({ "v", "x" }, "p", '"_dP', { desc = "Paste over selection without yanking it
 map("v", "<D-x>", '"+x', { desc = "Cut" }) -- Cut visual mode
 map("v", "<D-c>", '"+y', { desc = "Copy" }) -- Copy visual mode
 map({ "n", "v" }, "<D-v>", '"+P', { desc = "Paste" }) -- Paste normal and visual mode
-map("i", "<D-v>", '<Esc>l"+Pli', { desc = "Paste" }) -- Paste insert mode
-map("c", "<D-v>", "<C-r>+", { desc = "Paste" }) -- Paste command mode
+map("i", "<D-v>", '<Esc>"+Pi', { desc = "Paste" }) -- Paste insert mode
+-- map("c", "<D-v>", "<C-r>+", { desc = "Paste" }) -- Paste command mode
 
 --CTRL-Z is Undo; not in cmdline though
 map("n", "<D-Z>", "u", { desc = "Undo" })

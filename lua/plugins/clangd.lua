@@ -2,6 +2,7 @@ return {
   "p00f/clangd_extensions.nvim",
   lazy = true,
   opts = {
+    autoSetHints = false,
     inlay_hints = {
       inline = false,
     },

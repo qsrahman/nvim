@@ -89,6 +89,7 @@ local M = {
     },
   },
   servers = {
+    -- asm_lsp = {},
     clangd = {
       keys = {
         { "<leader>ch", "<cmd>ClangdSwitchSourceHeader<cr>", desc = "Switch Source/Header (C/C++)" },
@@ -122,6 +123,12 @@ local M = {
         usePlaceholders = true,
         completeUnimported = true,
         clangdFileStatus = true,
+      },
+      InlayHints = {
+        Enabled = true,
+        Designators = true,
+        ParameterNames = true,
+        DeducedTypes = true,
       },
     },
     neocmake = {},
@@ -246,7 +253,40 @@ local M = {
     --     client.server_capabilities.hoverProvider = false
     --   end,
     -- },
-    rust_analyzer = {},
+    rust_analyzer = {
+      inlayHints = {
+        bindingModeHints = {
+          enable = false,
+        },
+        chainingHints = {
+          enable = true,
+        },
+        closingBraceHints = {
+          enable = true,
+          minLines = 25,
+        },
+        closureReturnTypeHints = {
+          enable = "never",
+        },
+        lifetimeElisionHints = {
+          enable = "never",
+          useParameterNames = false,
+        },
+        maxLength = 25,
+        parameterHints = {
+          enable = true,
+        },
+        reborrowHints = {
+          enable = "never",
+        },
+        renderColons = true,
+        typeHints = {
+          enable = true,
+          hideClosureInitialization = false,
+          hideNamedConstructor = false,
+        },
+      },
+    },
     vtsls = {
       -- explicitly add default filetypes, so that we can extend
       -- them in related extras

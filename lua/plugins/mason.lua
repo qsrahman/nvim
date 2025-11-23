@@ -24,6 +24,7 @@ return {
     opts = {
       automatic_enable = false,
       ensure_installed = {
+        -- "asm_lsp",
         "clangd",
         "cssls",
         "gopls",
