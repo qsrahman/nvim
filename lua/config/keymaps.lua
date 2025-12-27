@@ -1,6 +1,6 @@
 local map = vim.keymap.set
 
--- quit
+-- Quit
 map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit Neovim" })
 map({ "n", "i" }, "<C-q>", "<Esc><cmd>qa<CR>", { desc = "Quit Neovim" })
 
@@ -19,8 +19,8 @@ map("n", "<D-k>", '"_d$', { desc = "Delete to end of line" })
 map("i", "<D-k>", '<C-o>"_d$', { desc = "Delete to end of line" })
 
 -- Select all
-map("n", "<D-a>", "gg<S-v>G", { desc = "Select all" })
-map("i", "<D-a>", "<C-o>gg<C-o><S-v>G", { desc = "Select all" })
+map("n", "<C-a>", "gg<S-v>G", { desc = "Select all" })
+map("i", "<C-a>", "<C-o>gg<C-o><S-v>G", { desc = "Select all" })
 
 -- Better J behavior
 map("n", "J", "mzJ`z", { desc = "Join lines and keep cursor position" })
@@ -51,21 +51,22 @@ map("i", "<D-v>", '<Esc>"+Pi', { desc = "Paste" }) -- Paste insert mode
 -- map("c", "<D-v>", "<C-r>+", { desc = "Paste" }) -- Paste command mode
 
 --CTRL-Z is Undo; not in cmdline though
-map("n", "<D-Z>", "u", { desc = "Undo" })
-map("i", "<D-Z>", "<C-o>u", { desc = "Undo" })
+map("n", "<C-Z>", "u", { desc = "Undo" })
+map("i", "<C-Z>", "<C-o>u", { desc = "Undo" })
 
 --CTRL-Y is Redo
-map("n", "<D-Y>", "<C-R>", { desc = "Redo" })
-map("i", "<D-Y>", "<C-o><C-R>", { desc = "Redo" })
+map("n", "<C-Y>", "<C-R>", { desc = "Redo" })
+map("i", "<C-Y>", "<C-o><C-R>", { desc = "Redo" })
 
 map("n", "<D-r>", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/g<Left><Left>", { desc = "Search and replace" })
-map("i", "<D-r>", "<C-o>:%s/\\<<C-r><C-w>\\>/<C-r><C-w>/g<Left><Left>", { desc = "Search and replace" })
-map("v", "<D-r>", '"hy:%s/<C-r>h/<C-r>h/g<Left><Left>', { desc = "Search and replace" })
+-- map("i", "<D-r>", "<C-o>:%s/\\<<C-r><C-w>\\>/<C-r><C-w>/g<Left><Left>", { desc = "Search and replace" })
+-- map("v", "<D-r>", '"hy:%s/<C-r>h/<C-r>h/g<Left><Left>', { desc = "Search and replace" })
 
 -- Better indenting in visual mode
 map("v", "<", "<gv", { desc = "Indent left and reselect" })
 map("v", ">", ">gv", { desc = "Indent right and reselect" })
 
+-- Duplicate line
 map("n", "<A-S-Down>", "yyp", { noremap = true, silent = true, desc = "Duplicate current line" })
 map("i", "<A-S-Down>", "<Esc>yypi", { noremap = true, silent = true, desc = "Duplicate current line" })
 
@@ -126,9 +127,9 @@ map("i", ",", ",<c-g>u")
 map("i", ".", ".<c-g>u")
 map("i", ";", ";<c-g>u")
 
-map("n", "<D-/>", "gcc", { desc = "Toggle comment line", remap = true })
-map("i", "<D-/>", "<C-o>gcc", { desc = "Toggle comment line", remap = true })
-map("v", "<D-/>", "gc", { desc = "Toggle comments", remap = true })
+map("n", "<A-/>", "gcc", { desc = "Toggle comment line", remap = true })
+map("i", "<A-/>", "<C-o>gcc", { desc = "Toggle comment line", remap = true })
+map("v", "<A-/>", "gc", { desc = "Toggle comments", remap = true })
 
 -- location list
 map("n", "<leader>xl", function()

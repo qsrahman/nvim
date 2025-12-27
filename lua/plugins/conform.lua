@@ -12,7 +12,7 @@ return {
       cmake = { "cmakelang" },
       cpp = { "clang-format" },
       css = { "prettier" },
-      go = { "goimports", "gofumpt" },
+      -- go = { "goimports", "gofumpt" },
       html = { "prettier" },
       javascript = { "prettier" },
       json = { "prettier" },

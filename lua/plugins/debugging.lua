@@ -23,7 +23,7 @@ return {
     "nvim-neotest/nvim-nio",
     -- virtual text for the debugger
     { "theHamsta/nvim-dap-virtual-text", opts = {} },
-    { "leoluz/nvim-dap-go", opts = {} },
+    -- { "leoluz/nvim-dap-go", opts = {} },
     "mfussenegger/nvim-dap-python",
     "jbyuki/one-small-step-for-vimkind",
   },

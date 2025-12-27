@@ -87,6 +87,7 @@ return {
     -- { "<leader><space>", LazyVim.pick("files"), desc = "Find Files (Root Dir)" },
     -- find
     { "<leader>fb", "<cmd>FzfLua buffers sort_mru=true sort_lastused=true<cr>", desc = "Buffers" },
+    { "<leader>fB", "<cmd>FzfLua buffers<cr>", desc = "Buffers (all)" },
     { "<leader>fc", "<cmd>lua FzfLua.files({cwd=vim.fn.stdpath('config')})<cr>", desc = "Find Config File" },
     -- { "<leader>ff", LazyVim.pick("files"), desc = "Find Files (Root Dir)" },
     { "<leader>ff", "<cmd>FzfLua files<cr>", desc = "Find Files (cwd)" },
@@ -95,9 +96,13 @@ return {
     -- { "<leader>fR", LazyVim.pick("oldfiles", { cwd = vim.uv.cwd() }), desc = "Recent (cwd)" },
     -- git
     { "<leader>gc", "<cmd>FzfLua git_commits<CR>", desc = "Commits" },
+    { "<leader>gd", "<cmd>FzfLua git_diff<cr>", desc = "Git Diff (hunks)" },
+    { "<leader>gl", "<cmd>FzfLua git_commits<CR>", desc = "Commits" },
     { "<leader>gs", "<cmd>FzfLua git_status<CR>", desc = "Status" },
+    { "<leader>gS", "<cmd>FzfLua git_stash<cr>", desc = "Git Stash" },
     -- search
     { '<leader>s"', "<cmd>FzfLua registers<cr>", desc = "Registers" },
+    { "<leader>s/", "<cmd>FzfLua search_history<cr>", desc = "Search History" },
     { "<leader>sa", "<cmd>FzfLua autocmds<cr>", desc = "Auto Commands" },
     { "<leader>sb", "<cmd>FzfLua grep_curbuf<cr>", desc = "Buffer" },
     { "<leader>sc", "<cmd>FzfLua command_history<cr>", desc = "Command History" },
@@ -105,6 +110,7 @@ return {
     { "<leader>sd", "<cmd>FzfLua diagnostics_document<cr>", desc = "Document Diagnostics" },
     { "<leader>sD", "<cmd>FzfLua diagnostics_workspace<cr>", desc = "Workspace Diagnostics" },
     -- { "<leader>sg", LazyVim.pick("live_grep"), desc = "Grep (Root Dir)" },
+    -- { "<leader>sG", LazyVim.pick("live_grep", { root = false }), desc = "Grep (cwd)" },
     { "<leader>sg", "<cmd>FzfLua live_grep<cr>", desc = "Grep (cwd)" },
     { "<leader>sh", "<cmd>FzfLua help_tags<cr>", desc = "Help Pages" },
     {
