@@ -27,7 +27,7 @@ return {
       ["clang-format"] = {
         command = "clang-format",
         append_args = {
-          "--style={ BasedOnStyle: Google, IndentWidth: 4, TabWidth: 4, ColumnLimit: 0, AccessModifierOffset: -4, DerivePointerAlignment: false, PointerAlignment: Left, Cpp11BracedListStyle: false}",
+          "--style={ BasedOnStyle: Google, IndentWidth: 4, TabWidth: 4, ColumnLimit: 0, AccessModifierOffset: -4, DerivePointerAlignment: false, PointerAlignment: Left, Cpp11BracedListStyle: false, SortIncludes: false}",
         },
       },
       stylua = {

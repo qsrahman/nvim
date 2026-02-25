@@ -1,7 +1,7 @@
 return {
   "saghen/blink.cmp",
   event = { "InsertEnter", "CmdLineEnter" },
-  version = "1.*",
+  version = "*",
   -- build = "cargo build --release",
   dependencies = {
     "rafamadriz/friendly-snippets",
@@ -19,7 +19,6 @@ return {
     {
       "saghen/blink.compat",
       version = "*",
-      lazy = true,
       opts = {},
     },
   },
@@ -47,6 +46,9 @@ return {
       -- ["<Tab>"] = { "select_next", "snippet_forward", "fallback" },
       -- ["<CR>"] = { "accept", "fallback" },
       -- ["<Esc>"] = { "hide", "fallback" },
+    },
+    snippets = {
+      preset = "default",
     },
     appearance = {
       use_nvim_cmp_as_default = false,
@@ -85,7 +87,7 @@ return {
       },
     },
     sources = {
-      default = { "lsp", "snippets", "path", "buffer", "lazydev" },
+      default = { "lsp", "path", "snippets", "buffer", "lazydev" },
       providers = {
         lazydev = {
           module = "lazydev.integrations.blink",
