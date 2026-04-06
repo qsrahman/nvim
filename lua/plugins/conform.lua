@@ -12,14 +12,14 @@ return {
       cmake = { "cmakelang" },
       cpp = { "clang-format" },
       css = { "prettier" },
-      -- go = { "goimports", "gofumpt" },
+      go = { "goimports", "gofumpt" },
       html = { "prettier" },
       javascript = { "prettier" },
       json = { "prettier" },
       lua = { "stylua" },
       markdown = { "prettier" },
-      python = { "black", "isort" },
-      -- python = { "ruff_fix", "ruff_format", "ruff_organize_imports" },
+      -- python = { "black", "isort" },
+      python = { "ruff_fix", "ruff_format", "ruff_organize_imports" },
       typescript = { "prettier" },
       yaml = { "prettier" },
     },
@@ -65,9 +65,9 @@ return {
           "css",
         },
       },
-      isort = {
-        append_args = { "--profile", "black" },
-      },
+      -- isort = {
+      --   append_args = { "--profile", "black" },
+      -- },
     },
     format_on_save = {
       -- These options will be passed to conform.format()

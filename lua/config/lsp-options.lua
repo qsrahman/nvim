@@ -210,19 +210,19 @@ local M = {
         },
       },
     },
-    pyright = {
-      settings = {
-        python = {
-          analysis = {
-            typeCheckingMode = "basic", -- Can be "off", "basic", "standard", or "strict"
-            autoImportCompletion = true,
-            diagnosticSeverityOverrides = {
-              reportWildcardImportFromLibrary = "none",
-            },
-          },
-        },
-      },
-    },
+    -- pyright = {
+    --   settings = {
+    --     python = {
+    --       analysis = {
+    --         typeCheckingMode = "basic", -- Can be "off", "basic", "standard", or "strict"
+    --         autoImportCompletion = true,
+    --         diagnosticSeverityOverrides = {
+    --           reportWildcardImportFromLibrary = "none",
+    --         },
+    --       },
+    --     },
+    --   },
+    -- },
     -- pyright = {
     --   settings = {
     --     pyright = {
@@ -238,21 +238,40 @@ local M = {
     --     },
     --   },
     -- },
-    -- ruff = {
-    --   init_options = {
-    --     settings = {
-    --       args = {},
-    --       logLevel = "error",
-    --       lint = {
-    --         ignore = { "F403", "F405" },
-    --       },
-    --     },
-    --   },
-    --   on_attach = function(client, _)
-    --     -- Disable hover in favor of Pyright
-    --     client.server_capabilities.hoverProvider = false
-    --   end,
-    -- },
+    basedpyright = {
+      settings = {
+        basedpyright = {
+          analyses = {
+            diagnosticMode = "openFilesOnly",
+            typeCheckingMode = "basic", -- Can be "off", "basic", "standard", or "strict"
+            useLibraryCodeForTypes = true,
+            diagnosticSeverityOverrides = {
+              autoSearchPaths = true,
+              enableTypeIgnoreComments = false,
+              reportGeneralTypeIssues = "none",
+              reportArgumentType = "none",
+              reportUnknownMemberType = "none",
+              reportAssignmentType = "none",
+            },
+          },
+        },
+      },
+    },
+    ruff = {
+      init_options = {
+        settings = {
+          args = {},
+          logLevel = "error",
+          lint = {
+            -- ignore = { "F403", "F405" },
+          },
+        },
+      },
+      on_attach = function(client, _)
+        -- Disable hover in favor of Pyright
+        client.server_capabilities.hoverProvider = false
+      end,
+    },
     rust_analyzer = {
       inlayHints = {
         bindingModeHints = {

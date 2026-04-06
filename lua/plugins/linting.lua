@@ -9,8 +9,8 @@ return {
       cmake = { "cmakelint" },
       javascript = { "eslint_d" },
       typescript = { "eslint_d" },
-      python = { "pylint" },
-      -- python = { "ruff" },
+      -- python = { "pylint" },
+      python = { "ruff" },
     }
 
     lint.linters.eslint_d.args = {

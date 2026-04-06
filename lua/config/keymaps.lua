@@ -41,7 +41,7 @@ map("i", "<D-Right>", "<C-o>$", { desc = "Jump to end of line" })
 map("v", "y", '"+y', { desc = "Yank to system clipboard" })
 
 -- Keep last yanked when pasting
-map({ "v", "x" }, "p", '"_dP', { desc = "Paste over selection without yanking it" })
+map({ "v", "x" }, "p", '"_dP', { noremap = true, silent = true, desc = "Paste over selection without yanking it" })
 
 -- Cut, Copy and Paste
 map("v", "<D-x>", '"+x', { desc = "Cut" }) -- Cut visual mode

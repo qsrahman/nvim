@@ -22,9 +22,10 @@ return {
       "mason-org/mason.nvim",
     },
     opts = {
-      automatic_enable = false,
+      automatic_enable = true,
       ensure_installed = {
         -- "asm_lsp",
+        "basedpyright",
         "clangd",
         "cssls",
         "gopls",
@@ -32,7 +33,8 @@ return {
         "jsonls",
         "lua_ls",
         "neocmake",
-        "pyright",
+        -- "pyright",
+        "ruff",
         "rust_analyzer",
         "taplo",
         "vtsls",
@@ -47,7 +49,7 @@ return {
     opts = {
       auto_update = true,
       ensure_installed = {
-        "black",
+        -- "black",
         "clang-format",
         "cmakelang",
         "cmakelint",
@@ -56,7 +58,7 @@ return {
         "gofumpt",
         "gomodifytags",
         "impl",
-        "isort",
+        -- "isort",
         "prettier",
         "stylua",
       },
@@ -76,7 +78,7 @@ return {
       ensure_installed = {
         "codelldb",
         "debugpy",
-        -- "delve",
+        "delve",
       },
     },
   },
